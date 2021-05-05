@@ -4,6 +4,7 @@
 
 Now that we have created our custom embeddings, we need to evaluate how good they are. A common technique for evaluating word embeddings is cosine similarity. For cosine similarity we calculate the angle between two vectors and take the cosine of that angle. The smaller the angle, the more similar the two vectors are, hence the more similar they are in meaning or distribution. 
 Cosine similarity is defined as the dot-product of two vectors divided by the product of their respective magnitudes:
+
 ![img](https://latex.codecogs.com/svg.latex?%5Ccos%28%5Ctheta%29%3D%7B%5Cmathbf%7BA%7D%5Ccdot%5Cmathbf%7BB%7D%5Cover%5C%7C%5Cmathbf%7BA%7D%5C%7C%5C%7C%5Cmathbf%7BB%7D%5C%7C%7D)
 
 If you want to calculate the cosine similarities of your own vectors in python, you can do it with this simple formula:
@@ -18,7 +19,7 @@ print(cosine_sim)
 ```
 ## Why cosine similarity is no good for character level embeddings
 
-With word embeddings, we can test our vectors by checking how similar two word vectors are through cosine similarities. This can help us to evaluate our vectos. For example, our vector for "giraffe" should be closer to the vector for "lion" than it should be to the vector for "Antarctica". If semantically distant words have high cosine similarity in our vectors, then we have a problem.
+With word embeddings, we can test our vectors by checking how similar two word vectors are through cosine similarities. This can help us to evaluate our vectors. For example, our vector for "giraffe" should be closer to the vector for "lion" than it should be to the vector for "Antarctica". If semantically distant words have high cosine similarity in our vectors, then we have a problem.
 
 Since we assume that word-embeddings carry some information about the distribution and semantics of words, we can leverage the semantics to test how "accurate" our vector representations are. Semantically close words should be close in the vector space. 
 
@@ -31,5 +32,14 @@ So, as you can see, cosine similarity will only be marginally helpful at best in
 ## Evaluation through a task
 
 Instead, we will evaluate our embeddings with a task. Simply put, we will use our embeddings against another style of embedding in an artificially constructed task and see which perform better.
+
+For this task we will construct a logistic regression classifier in [scikit-learn](https://sklearn.org/). We will train this classifier to read in a word from English, French, or German and make a decision as to which language the word belongs to. Then we will test our classifier with a series of unknown words, asking it to make a prediction on them. Note how this task would be impossible for most word-level embeddings, as they usually cannot deal with unknown words (exceptions to this include [fasttext](https://fasttext.cc/)).
+
+We will train this classifier once with our pretrained embeddings from the tutorial, and then test it. After that, we will train the same classifier again, using embeddings from the [CountVectorizer](https://sklearn.org/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) library of sci-kit learn. We will then compare the accuracy and f1 score of each implementation to evaluate our vectors.
+
+## [Practical Implementation](glove_classifier.md)
+
+For the practical implementation of this, complete with Jupyter notebook to follow along, please go to the [next page of the tutorial](glove_classifier.md)
+
 
 [return to main page](index.md)
