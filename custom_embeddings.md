@@ -15,3 +15,29 @@ I simply downloaded a series of books from [Project Gutenberg](https://www.guten
 - **German**: Sämmtliche Werke 3: Abende auf dem Gutshof bei Dikanka - Gogol (Translated by Frieda Ichak), Celsissimus - Arthur Achleitner, Wunderbare Reise des kleinen Nils Holgersson mit den Wildgänsen - Selma Lagerlöf (translated by Pauline Klaiber)
 You can find these books in .txt format in the [test](/test/) and [training](/training/) folders of this repository.
 ### Preprocess your data
+Depending on the type of embedding you are aiming for, you will need to preprocess your data differently. GloVe will assume that every word is seperated by a space. So if you would like to do word-level embeddings, then you need to make sure each word is seperated by a space, and each sentence is seperated by a newline.
+
+If you are doing character-level embeddings, this becomes a little bit more tricky. If you are doing character unigrams (i.e. treating each character seperately) You will need to make sure every _character_ is seperated by a space. If you are doing character _bigrams_ you need to make sure every second character is seperated by a space, and so on and so forth. Your words should be seperated by newlines. However, this also depends on what you are planning to do with your vectors. If you want a greater context window for your characters than a single word, then you will need to decide how many words you would like per line.
+
+For this tutorial we are doing character unigrams and one word per line. This is because we need that style of representation for our [evaluation task](glove_classifier.md) later. there is a [preprocessing script](dickens.py) in this repository. But, all the data is already processed, so you do not need to run it. At the end of your preprocessing, you want a file that looks like [this](/data/vector_tokens.txt), if you want character-unigrams.
+
+Here is a short code-snippet from the preprocessing script that shows you one way of prepping this type of data:
+```python
+tokenlist = []
+for file in training: #there are 3 files in this list
+	f=open(file,'r', encoding='utf-8')      # read in the file, make sure to mark as utf8
+	file = f.read()
+	f.close()
+	tokens= tokenizer.tokenize(file)
+	tokens = tokens[400:-5000] #clearing out the Gutenberg parts
+	tokenlist.append(tokens)
+tokens = [*tokenlist[0],*tokenlist[1],*tokenlist[2]]
+#print(tokens)
+tokenfile= open('vector_tokens.txt','w+', encoding='utf-8')
+for token in tokens:
+	token = [i+" " for i in token.lower()]
+	for i in token:
+		tokenfile.write(i)
+	tokenfile.write("\n")
+tokenfile.close()
+```
