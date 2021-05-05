@@ -4,11 +4,12 @@ This tutorial will show you how you how to use [GloVe](https://nlp.stanford.edu/
 
 For your convenience, this tutorial is seperated into parts. If you are just interested in a certain part, feel free to directly go to one of the links below.
 ## Table of Contents
-1.<a href="Embeddings.md">Embeddings</a>
-2. GloVe
-3. Creating Custom Embeddings with GloVe
-4. Using Your Embeddings in a Classifier
-5. Synopsis
+1. <a href="Embeddings.md">Embeddings</a>
+2. [Embeddings](Embeddings.md)
+3. GloVe
+4. Creating Custom Embeddings with GloVe
+5. Using Your Embeddings in a Classifier
+6. Synopsis
 
 
 
