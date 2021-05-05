@@ -2,6 +2,12 @@
 
 This tutorial will show you how you how to use [GloVe](https://nlp.stanford.edu/projects/glove/) (Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014) to create your own custom character-level embeddings for machine learning purposes. We will begin by discussing embeddings in general and GloVe in particular. I will then briefly discuss in what kind of a scenario we would want to do a character-level embedding, as opposed to a word-level embedding. Finally, I will walk you through an example application for the embeddings we just created.
 
+
+## Table of Contents
+1.<a href="Embeddings.md">Embeddings</a>
+
+
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
