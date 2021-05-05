@@ -7,8 +7,8 @@ For your convenience, this tutorial is seperated into parts. If you are just int
 1. [Embeddings](Embeddings.md)
 2. [GloVe](about_glove.md)
 3. [Creating Custom Embeddings with GloVe](custom_embeddings.md)
-4. [Using Your Embeddings in a Classifier (Evaluation)](evaluation.md)
-5. Synopsis
+4. [Discussion on Evaluation](evaluation.md)
+5. [Practical Evaluation (building a classifier)](glove_classifier.md)
 
 
 
