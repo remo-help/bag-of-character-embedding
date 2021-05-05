@@ -31,9 +31,9 @@ So, as you can see, cosine similarity will only be marginally helpful at best in
 
 ## Evaluation through a task
 
-Instead, we will evaluate our embeddings with a task. Simply put, we will use our embeddings against another style of embedding in an artificially constructed task and see which perform better.
+Instead, we will evaluate our embeddings with a task. Simply put, we will use our embeddings against another style of embedding in an artificially constructed task and see which performs better.
 
-For this task we will construct a logistic regression classifier in [scikit-learn](https://sklearn.org/). We will train this classifier to read in a word from English, French, or German and make a decision as to which language the word belongs to. Then we will test our classifier with a series of unknown words, asking it to make a prediction on them. Note how this task would be impossible for most word-level embeddings, as they usually cannot deal with unknown words (exceptions to this include [fasttext](https://fasttext.cc/)).
+For this task we will construct a logistic regression classifier in [scikit-learn](https://sklearn.org/) using our own glove embeddings. We will train this classifier to read in a word from English, French, or German and make a decision as to which language the word belongs to. Then we will test our classifier with a series of unknown words, asking it to make a prediction on them. Note how this task would be impossible for most word-level embeddings, as they usually cannot deal with unknown words (exceptions to this include [fasttext](https://fasttext.cc/)).
 
 We will train this classifier once with our pretrained embeddings from the tutorial, and then test it. After that, we will train the same classifier again, using embeddings from the [CountVectorizer](https://sklearn.org/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer) library of sci-kit learn. We will then compare the accuracy and f1 score of each implementation to evaluate our vectors.
 
