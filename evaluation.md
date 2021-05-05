@@ -18,6 +18,18 @@ print(cosine_sim)
 ```
 ## Why cosine similarity is no good for character level embeddings
 
-With word embeddings, we can test our vectors by checking how similar two word vectors are through cosine similarities. This can help 
+With word embeddings, we can test our vectors by checking how similar two word vectors are through cosine similarities. This can help us to evaluate our vectos. For example, our vector for "giraffe" should be closer to the vector for "lion" than it should be to the vector for "Antarctica". If semantically distant words have high cosine similarity in our vectors, then we have a problem.
+
+Since we assume that word-embeddings carry some information about the distribution and semantics of words, we can leverage the semantics to test how "accurate" our vector representations are. Semantically close words should be close in the vector space. 
+
+Characters, however, are semantically void. The character "e" in the English language has no semantic content. Only when combined into a word, do characters have meaning. So the classic cosine similarity technique will not help us to evaluate our character-level vectors. Cosine similarity here will only show us which characters pattern together. 
+
+Now, we might consider leveraging our knowledge of English phonology to evaluate these vectors. The English language has rules about what sounds can pattern together, perhaps we can use that to evaluate our vectors? This might be a good approach for a language where the orthography (i.e. the letters) is largely phonetic (i.e. translates directly to sound). English is unfortunately notorious for having an orthography that is particularly intransparent about the actual sounds of the word. For example, can you tell me the difference in _sound_ between "knight" and "night"?
+
+So, as you can see, cosine similarity will only be marginally helpful at best in evaluating our character level embeddings, we need to find a different way.
+
+## Evaluation through a task
+
+Instead, we will evaluate our embeddings with a task. Simply put, we will use our embeddings against another style of embedding in an artificially constructed task and see which perform better.
 
 [return to main page](index.md)
