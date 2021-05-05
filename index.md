@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Character Level Embeddings with GloVe
 
 You can use the [editor on GitHub](https://github.com/remo-help/character-embedding-with-glove/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
