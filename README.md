@@ -1,2 +1,2 @@
 # bag-of-character-embedding
-A tutorial on how to do bag-of-character embeddings with pytorch.
+A tutorial on how to do character level embedding with GloVe
