@@ -1,8 +1,6 @@
-## Character Level Embeddings with GloVe
+# Character Level Embeddings with GloVe
 
-You can use the [editor on GitHub](https://github.com/remo-help/character-embedding-with-glove/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This tutorial will show you how you how to use [GloVe](https://nlp.stanford.edu/projects/glove/) (Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014) to create your own custom character-level embeddings for machine learning purposes. We will begin by discussing embeddings in general and GloVe in particular. I will then briefly discuss in what kind of a scenario we would want to do a character-level embedding, as opposed to a word-level embedding. Finally, I will walk you through an example application for the embeddings we just created.
 
 ### Markdown
 
