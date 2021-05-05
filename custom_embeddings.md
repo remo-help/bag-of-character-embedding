@@ -41,3 +41,15 @@ for token in tokens:
 	tokenfile.write("\n")
 tokenfile.close()
 ```
+Now that we have found and prepped our data, we can move on to clone the GloVe repository.
+
+# Downloading and Using the GloVe Implementation
+
+This part of the tutorial will assume you are either on Ubuntu, or another Linux distribution and have a [c-compiler](https://gcc.gnu.org/) installed and know how to use it. No guarantees can be made for windows or ios users. 
+
+## Cloning the GloVe repository
+
+First we need to clone or download the GloVe repository. If you have git, you can just call:
+```bash
+git clone https://github.com/stanfordnlp/GloVe
+```
