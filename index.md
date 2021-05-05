@@ -12,3 +12,12 @@ For your convenience, this tutorial is seperated into parts. If you are just int
 
 
 
+## What You Will Need
+
+###Embeddings
+In order to create your GloVe embeddings you will need a c-compiler (such as gcc). If you do not have a c-compiler on your os, you may want to go ahead and install one of your choosing. If you are on Ubuntu or Debian, you will already have a c-compiler installed on your system.
+
+###Evaluation
+In order to run the evaluation/classifier, you will need python and the following packages for python:
+- numpy
+- sklearn
