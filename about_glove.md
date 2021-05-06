@@ -32,9 +32,13 @@ The model generates two sets of word vectors. If the co-occurence matrix is symm
 In other regards, GloVe functions similarly to word2vec. Except for predicting a word from its context, the GloVe model is trained to predict the co-occurrence matrix.
 
 
+## [Making your own GloVe style embeddings](custom_embeddings.md)
 
+Let us now move on the next part of the tutorial, where we learn how to use the authors original implementation to make our own vectors. [Next Page](custom_embeddings.md)
 
 
 ### References
 Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. GloVe: Global Vectors for Word Representation.
 Mikolov, Tomas (2013). "Distributed representations of words and phrases and their compositionality". Advances in Neural Information Processing Systems
+
+[return to main page](index.md)
