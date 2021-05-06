@@ -15,6 +15,8 @@ I simply downloaded a series of books from [Project Gutenberg](https://www.guten
 - **German**: Sämmtliche Werke 3: Abende auf dem Gutshof bei Dikanka - Gogol (Translated by Frieda Ichak), Celsissimus - Arthur Achleitner, Wunderbare Reise des kleinen Nils Holgersson mit den Wildgänsen - Selma Lagerlöf (translated by Pauline Klaiber)
 You can find these books in .txt format in the [test](/test/) and [training](/training/) folders of this repository.
 
+For later testing purposes, I also created a file that only contains tokens which are not in the intial training data. For more information see the [preprocessing script](dickens.py)
+
 ### Preprocess your data
 Depending on the type of embedding you are aiming for, you will need to preprocess your data differently. GloVe will assume that every word is seperated by a space. So if you would like to do word-level embeddings, then you need to make sure each word is seperated by a space, and each sentence is seperated by a newline.
 
