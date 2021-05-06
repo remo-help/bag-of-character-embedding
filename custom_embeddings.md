@@ -48,7 +48,7 @@ Now that we have found and prepped our data, we can move on to clone the GloVe r
 
 # Downloading and Using the GloVe Implementation
 
-This part of the tutorial will assume you are either on Ubuntu, or another Linux distribution and have a [c-compiler](https://gcc.gnu.org/) and git installed and know how to use it. No guarantees can be made for windows or ios users. 
+This part of the tutorial will assume you are either on Ubuntu, or another Linux distribution and have a [c-compiler](https://gcc.gnu.org/) and git installed and know how to use it. No guarantees can be made for windows or iOS users. 
 
 ## Cloning the GloVe repository
 
