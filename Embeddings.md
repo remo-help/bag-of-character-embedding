@@ -13,9 +13,8 @@ Word embeddings are numerical representations of words, usually represented in a
 
 Word embeddings are primarily used in machine learning to compute an approximation of the meaning or some other information about the word. The idea is that we store that information in the vector as a numerical representation. How can we do that? Well we have to either do this manually (which nobody in their right mind would do with a 50D vector) or we can let a program or neural net do it for us. 
 
-## Why and how do we train embeddings?
+## [GloVe style embeddings](about_glove.md)
 
-[...] more here later
-
+Now that we have some idea of what embeddings are, [let us dive right into the GloVe model](about_glove.md). Click the link to proceed with the tutorial.
 
 [Return to main page](index.md)
