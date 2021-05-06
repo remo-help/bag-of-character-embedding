@@ -70,7 +70,7 @@ cp tutorial-directory/data/vector_tokens.txt glove-directory/vector_tokens.txt
 ```
 Next, you need to return to the directory to which you downloaded the GloVe repository. Then you need to make a copy of the demo.sh file (which we will call "my_embeddings.sh).
 ```bash
-cd glove
+cd glove/
 cp demo.sh my_embeddings.sh
 ```
 Now open "my_embeddings.sh" in the editor of your choice. You will see a bunch of code that may mean more or less to you depending on your level of experience. But, not to worry, you really only need to worry about the "corpus" and "save_file" parameter:
