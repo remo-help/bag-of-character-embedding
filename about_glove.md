@@ -12,9 +12,19 @@ Essentially, how this works in practice that we randomly assign each word a vect
 
 GloVe was introduced by Pennigton et. al 2014 and it combines the insights of word2vec, that local context is a powerful predictor, with _global co-occurence statistics_. Word2vec exclusively relies on local context and its model iterates over the data multiple times until it converges, which can be quite costly with large corpora. So even though word2vec iterates over the _entire_ corpus, it only ever consideres local information. This means, for example, that if there are words which are quite frequent globally, word2vec may overestimate their importance locally. Here global means the entire corpus, whereas local refers to the k-window.
 
-In order to overcome these types of issues, GloVe utilizes both the local context, as well as global co-occurances. It does this by utilizing a pre-computed global co-occurence matrix. Assume a corpus of 50,000 unique words. The co-occurrence matrix will be a 50,000 X 50,000 matrix. Every row denotes a word and every column in a row denotes how many times that word co-occurs with another word _in the context k-window_. It's important to understand, that the global co-occurence does not refer to how many times the word occurs in the corpus in general, but rather, how many times they co-occur in a k-window. 
+In order to overcome these types of issues, GloVe utilizes both the local context, as well as global co-occurances. It does this by utilizing a pre-computed global co-occurence matrix. Assume a corpus of 50,000 unique words. The co-occurrence matrix will be a 50,000 X 50,000 matrix. Every row denotes a word and every column in a row denotes how many times that word co-occurs with another word _in the context k-window_. It's important to understand, that the global co-occurence does not refer to how many times the word occurs in the corpus in general, but rather, how many times they co-occur in a k-window. Now that we have these raw co-occurences, we can use that to compute a probability matrix, which will give us the probablity of word X co-occuring with word Y in ths corpus:
 
-![img](/images/matrix.jpg) Example of a co-occurence matrix from Pennigton et al. 2014
+![img](/images/matrix.jpg) 
+Example of a co-occurence _probability_ matrix from Pennigton et al. (2014, 3)
+
+Why is this useful? Well, to translate an example from Pennigton et al. (2014, 3), we can use this to find relationships between words. For example, take _i = ice_ and _j = steam_. We can learn something about their relationship by studying the the "ratio of their co-occurrence probabilities with various probe words" (Pennigton et al. 2014, 3). So, if we take a third _probe word_ say _k = solid_ we can divide the probability of _ice given solid_, P_ik, by the probability of _steam given solid_, P_jk. If the result of that division is a large number, we can assume that _solid_ is relevant to _ice_ but not relevant to _steam_. If the result is a small number, we can assume that _solid_ is relevant to _steam_, but not to _ice_. If the result approximates 1, it can be assumed to be irrelevant to either words. The assumption that we can leverage global co-occurence in this way is really the basis of the GloVe model.
+
+A problem here is that some words will rarely or even never co-occur. So there will be quite a few zero entries in our matrix. Even those entries that are non-zero but very small, will create some undesired noise in the data. To deal with this, the GloVe team proposed the following cost function:
+
+![img](/images/cost.png)
+
+In other regards, GloVe functions similarly to word2vec. Except for predicting a word from its context, the GloVe model is trained to predict the co-occurrence matrix.
+
 
 
 
