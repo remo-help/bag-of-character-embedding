@@ -252,3 +252,31 @@ class Classifier:
         return predictions,gold_labels
     
 ```
+
+## Training and testing the Classifier
+Now that we have constructed our classifier, it is time to train and test it once with each embedding type. First we will train and test it with our own custom embeddings. We will calculate an accuracy score and a f1 score and will save that for later:
+
+```python
+classifier = Classifier()
+vec= glove('data/dickens_vectors.txt')
+classifier.train(vec,'data/train_tokens.txt')
+
+predictions = classifier.predict_labels(vec,"data/test_tokens.txt")
+glove_f1= f1_score(predictions[1], predictions[0], average='weighted')
+glove_accuracy=accuracy_score(predictions[1],predictions[0])
+```
+After that it is time to train and test the CountVectorizer embeddings. For this we will simply refit the Classifier using the CountVectorizer embeddings:
+```python
+classifier = Classifier()
+classifier.train_count('data/count_train_tokens.txt')
+
+predictions = classifier.predict_labels_count("data/test_tokens.txt")
+count_accuracy=accuracy_score(predictions[1],predictions[0])
+count_f1=f1_score(predictions[1], predictions[0], average='weighted')
+```
+## Compare
+Now we can finally compare the two:
+```python
+print("Here are the results of the GloVe embeddings:\n","F1_score: ",glove_f1,"\n", "accuracy: ", glove_accuracy,"\n")
+print("Here are the results of the CountVectorizer embeddings:\n","F1_score: ",count_f1,"\n", "accuracy: ", count_accuracy)
+```
