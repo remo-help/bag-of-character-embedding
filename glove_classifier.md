@@ -270,10 +270,11 @@ After that it is time to train and test the CountVectorizer embeddings. For this
 classifier = Classifier()
 classifier.train_count('data/count_train_tokens.txt')
 
-predictions = classifier.predict_labels_count("data/test_tokens.txt")
+predictions = classifier.predict_labels_count("data/count_test_tokens.txt")
 count_accuracy=accuracy_score(predictions[1],predictions[0])
 count_f1=f1_score(predictions[1], predictions[0], average='weighted')
 ```
+If you are particularly observant, you probably noticed that I am using a different data file for the CountVectorizer. This is because this vectorizer is already character based, so there is no need to seperate the characters with spaces. The files contain the exact same as their GloVe equivalents. If you are unconvinced, go open the repository and take a look.
 ## Compare
 Now we can finally compare the two:
 ```python
