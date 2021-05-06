@@ -14,7 +14,7 @@ GloVe was introduced by Pennigton et. al 2014 and it combines the insights of wo
 
 In order to overcome these types of issues, GloVe utilizes both the local context, as well as global co-occurances. It does this by utilizing a pre-computed global co-occurence matrix. Assume a corpus of 50,000 unique words. The co-occurrence matrix will be a 50,000 X 50,000 matrix. Every row denotes a word and every column in a row denotes how many times that word co-occurs with another word _in the context k-window_. It's important to understand, that the global co-occurence does not refer to how many times the word occurs in the corpus in general, but rather, how many times they co-occur in a k-window. 
 
-![img](/images/matrix.jp) Example of a co-occurence matrix from Pennigton et al. 2014
+![img](/images/matrix.jpg) Example of a co-occurence matrix from Pennigton et al. 2014
 
 
 
