@@ -282,12 +282,12 @@ print("Here are the results of the GloVe embeddings:\n","F1_score: ",glove_f1,"\
 print("Here are the results of the CountVectorizer embeddings:\n","F1_score: ",count_f1,"\n", "accuracy: ", count_accuracy)
 ```
 Here are the results of the GloVe embeddings:
- F1_score:  0.6131187454146257 
- accuracy:  0.5547794117647059 
+ - F1_score:  0.6131187454146257 
+ - accuracy:  0.5547794117647059 
 
 Here are the results of the CountVectorizer embeddings:
- F1_score:  0.7720255415700806 
- accuracy:  0.7511859582542695
+ - F1_score:  0.7720255415700806 
+ - accuracy:  0.7511859582542695
 
 
 ## Results
