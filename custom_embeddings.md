@@ -82,4 +82,11 @@ Now that you have done this, all you need to do is call the following command (a
 bash my_embeddings.sh
 ```
 This shell script will compile a series of c-scripts for you, which in turn will calculate your glove vectors. If you are using my file, then this will finish within seconds. If you are using a larger file, this might take some time.
+
 ![img](/images/glove.jpg)
+
+Once you arrive at iteration 15 (or later if you changed the MAX_ITER parameter), you are finished. **Congratulations, you've just created your own custom GloVe embeddings**.
+
+If you would like to continue the tutorial, please continue to the [next page](evaluation.md), where I discuss how to evaluate our custom vectors.
+
+[return to main page](index.md)
