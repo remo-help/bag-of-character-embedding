@@ -12,7 +12,7 @@ pip install numpy
 
 ## Downloading the notebook
 
-If you haven't already downloaded this repository, you will need to do so now, if you wish to follow along. I provide a [jupyter notebook](Glove_Char_Classifier.ipynb) with which you can follow along every step of the way. So go ahead and clone the repository and open your jupyter notebook
+If you haven't already downloaded this repository, you will need to do so now, if you wish to follow along. I provide a [jupyter notebook](Glove_Char_Classifier.ipynb) with which you can follow along every step of the way. So go ahead and clone the repository and open your jupyter notebook. It is imperative that you clone or download the entire repository, as it contains the data the notebook is working with.
 
 ```bash
 git clone https://github.com/remo-help/character-embedding-with-glove
