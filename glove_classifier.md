@@ -280,4 +280,17 @@ Now we can finally compare the two:
 ```python
 print("Here are the results of the GloVe embeddings:\n","F1_score: ",glove_f1,"\n", "accuracy: ", glove_accuracy,"\n")
 print("Here are the results of the CountVectorizer embeddings:\n","F1_score: ",count_f1,"\n", "accuracy: ", count_accuracy)
+######
+Here are the results of the GloVe embeddings:
+ F1_score:  0.6131187454146257 
+ accuracy:  0.5547794117647059 
+
+Here are the results of the CountVectorizer embeddings:
+ F1_score:  0.7720255415700806 
+ accuracy:  0.7511859582542695
 ```
+
+## Results
+As you can see, the **CountVectorizer implementation performs much better**. However, even the CountVectorizer implementation does not yield amazing results. This is likely due to the fact that this is quite the difficult task. German, French, and English share many cognates (words that have similar roots). Also, the data contains a variety of names, which are a huge problem. For example "Irene" can be a name in French, English, and German. Considering these problems, both performances are still pretty good.
+
+**Why are the GloVe embeddings performing so much worse?** That is a good question. It seems global co-occurence is not very useful in the character space. This might perhaps be because the vocabulary is so small and characters generally have a high probability to co-occur with each other. It may be the case that GloVe only really becomes useful with a high vocabulary size, where we can properly leverage global co-occurences. In a small vocabulary space, the count based methods may have the edge. These results are unexpected, but very interesting. Does this mean we should never do GloVe style character embedding? I would not say that definitively. If we performed a similar task with more diverse languages and a higher character count, we may end up with results that favor GloVe.
