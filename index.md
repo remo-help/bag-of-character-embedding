@@ -25,4 +25,9 @@ In order to run the evaluation/classifier, you will need python3 and the followi
 
 ### Other Administrativa:
 GloVe is published under Apache License, Version 2.0
+
 This tutorial uses GloVe v1.2 which can be found [here](https://github.com/stanfordnlp/GloVe)
+
+
+
+Start [here](Embeddings.md)
