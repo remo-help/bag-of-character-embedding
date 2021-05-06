@@ -14,7 +14,7 @@ test = ['test//test_eng.txt','test//test_ger.txt','test//test2_ger.txt','test//t
 #creating the file to train our vectors
 ############################################################
 tokenlist = []
-for file in training:
+for file in training: #there are 3 files in this list
 	f=open(file,'r', encoding='utf-8')      # read in the file, make sure to mark as utf8
 	file = f.read()
 	f.close()
