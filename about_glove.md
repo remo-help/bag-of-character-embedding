@@ -23,6 +23,12 @@ A problem here is that some words will rarely or even never co-occur. So there w
 
 ![img](/images/cost.png)
 
+Where X_ij is the frequency of two words co-occuring. _f(X_ij)_ is a continuous function that vanishes if X=0, and has a hard threshhold as to not overweigh very frequent co-occurences:
+
+![img](/images/f_func.png)
+
+The model generates two sets of word vectors. If the co-occurence matrix is symmetric (which it is in the original implementation), both vectors should be equivalent, differing only because they were randomly initialized. The final word vector is the sum of those two vectors.
+
 In other regards, GloVe functions similarly to word2vec. Except for predicting a word from its context, the GloVe model is trained to predict the co-occurrence matrix.
 
 
