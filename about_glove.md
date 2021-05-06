@@ -12,6 +12,12 @@ Essentially, how this works in practice that we randomly assign each word a vect
 
 GloVe was introduced by Pennigton et. al 2014 and it combines the insights of word2vec, that local context is a powerful predictor, with _global co-occurence statistics_. Word2vec exclusively relies on local context and its model iterates over the data multiple times until it converges, which can be quite costly with large corpora. So even though word2vec iterates over the _entire_ corpus, it only ever consideres local information. This means, for example, that if there are words which are quite frequent globally, word2vec may overestimate their importance locally. Here global means the entire corpus, whereas local refers to the k-window.
 
+In order to overcome these types of issues, GloVe utilizes both the local context, as well as global co-occurances. It does this by utilizing a pre-computed global co-occurence matrix. Assume a corpus of 50,000 unique words. The co-occurrence matrix will be a 50,000 X 50,000 matrix. Every row denotes a word and every column in a row denotes how many times that word co-occurs with another word _in the context k-window_. It's important to understand, that the global co-occurence does not refer to how many times the word occurs in the corpus in general, but rather, how many times they co-occur in a k-window. 
+
+![img](/images/matrix.jp) Example of a co-occurence matrix from Pennigton et al. 2014
+
+
+
 
 ### References
 Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. GloVe: Global Vectors for Word Representation.
