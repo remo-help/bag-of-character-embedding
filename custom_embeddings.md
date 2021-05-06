@@ -85,7 +85,7 @@ This shell script will compile a series of c-scripts for you, which in turn will
 
 ![img](/images/glove.jpg)
 
-Once you arrive at iteration 15 (or later if you changed the MAX_ITER parameter), you are finished. **Congratulations, you've just created your own custom GloVe embeddings**.
+Once you arrive at iteration 15 (or later if you changed the MAX_ITER parameter), you are finished. **Congratulations, you have just created your own custom GloVe embeddings**. You can find your embeddings file in the glove directory, under the name you defined in the "save_file" parameter.
 
 If you would like to continue the tutorial, please continue to the [next page](evaluation.md), where I discuss how to evaluate our custom vectors.
 
