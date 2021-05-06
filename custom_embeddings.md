@@ -14,6 +14,7 @@ I simply downloaded a series of books from [Project Gutenberg](https://www.guten
 - **French**: Les misérables Tome V: Jean Valjean - Victor Hugo, Eureka - Edgar Allan Poe (French), Les Trois Mousquetaire - Alexandre Dumas
 - **German**: Sämmtliche Werke 3: Abende auf dem Gutshof bei Dikanka - Gogol (Translated by Frieda Ichak), Celsissimus - Arthur Achleitner, Wunderbare Reise des kleinen Nils Holgersson mit den Wildgänsen - Selma Lagerlöf (translated by Pauline Klaiber)
 You can find these books in .txt format in the [test](/test/) and [training](/training/) folders of this repository.
+
 ### Preprocess your data
 Depending on the type of embedding you are aiming for, you will need to preprocess your data differently. GloVe will assume that every word is seperated by a space. So if you would like to do word-level embeddings, then you need to make sure each word is seperated by a space, and each sentence is seperated by a newline.
 
@@ -53,3 +54,32 @@ First we need to clone or download the GloVe repository. If you have git, you ca
 ```bash
 git clone https://github.com/stanfordnlp/GloVe
 ```
+Else, you can follow that url and download the [repository](https://github.com/stanfordnlp/GloVe) manually.
+
+Next, you will need to get your data. If you want to follow along with the dataset I provide here, you can go ahead and clone this repository as well:
+```bash
+git clone https://github.com/remo-help/character-embedding-with-glove
+```
+Now we need to move the dataset you want to work with into your GloVe repository. If you use my dataset, you can copy it over manually, or call this command:
+
+```bash
+cp tutorial-directory/data/vector_tokens.txt glove-directory/vector_tokens.txt
+##assuming tutorial-directory and glove-directory are variables pointing to those directories
+```
+Next, you need to return to the directory to which you downloaded the GloVe repository. Then you need to make a copy of the demo.sh file (which we will call "my_embeddings.sh).
+```bash
+cd glove
+cp demo.sh my_embeddings.sh
+```
+Now open "my_embeddings.sh" in the editor of your choice. You will see a bunch of code that may mean more or less to you depending on your level of experience. But, not to worry, you really only need to worry about the "corpus" and "save_file" parameter:
+
+![img](/images/demo.jpg)
+
+Go ahead and change the corpus parameter from "text8" to "vector_tokens.txt" (or whatever you named your data-file). Be aware that this only works if you copied that file into the glove directory correctly. Then change the "save_file" parameter to the filename you would like your vectors to be saved as. I named mine "dickens_vectors.txt", but you can name yours whatever you like. If you would like to replicate my results in the evaluation part, you should also change the "window_size" parameter to 10 (from 15). This defines the size of the window the glove algorithm looks at.
+
+Now that you have done this, all you need to do is call the following command (assuming you are on Linux):
+```
+bash my_embeddings.sh
+```
+This shell script will compile a series of c-scripts for you, which in turn will calculate your glove vectors. If you are using my file, then this will finish within seconds. If you are using a larger file, this might take some time.
+![img](/images/glove.jpg)
