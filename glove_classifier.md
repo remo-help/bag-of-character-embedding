@@ -59,4 +59,196 @@ def glove(path):
             
     return embeddings_dict
 ```
+## Defining the Classifier
+We will define our classifier as a class. We will give this class a few attributes and functions:
 
+### train()
+This function will train our classifier on the GloVe vectors we provide. It will take the vector-dictionary created by the glove() function as 1st argument and the path to the training data as a second argument.
+### train_count()
+This function will train our classifier on the embeddings provided by the CountVectorizer of the sklearn library. This is a count-based embedding technique. It takes the path to the training data as an argument.
+### predict_labels()
+This function will take in test data and make predictions based on the test data. The output of the function will be encoded labels (integers). The output will consist of a tuple of lists. One list will contain all the predicted labels. The other list will contain the gold labels. We can inverse_transform those labels with the LabelEncoder if we want to see the strings.
+### predict_labels_count()
+This is the same as above, except for the CountVectorizer embeddings.
+
+```python
+class Classifier:
+    def __init__(self):
+        """
+        Initializes the classifier.
+        """
+        self.label_encoder = LabelEncoder()
+        
+           
+        self.vectorizer = CountVectorizer(analyzer='char', ngram_range=(1, 10)) #we are using the "word" parameter because our characters are already seperated
+
+        
+        self.model = LogisticRegression(solver="lbfgs", multi_class="multinomial", max_iter=5000,verbose=1)
+    
+    def train(self, vectors, train_data_path):
+        """
+        trains on the GloVe embeddings
+        """
+
+        f = open(train_data_path,'r',encoding="utf8") #reading in the input data
+        input_string = f.read()
+        f.close()
+        
+        input_list=input_string.split("\n") #storing each datum as a string in a list
+        input_list=input_list[0:-2] #getting rid of the last empty newline
+        feature_strings= []
+        label_strings= []
+        
+        for datum in input_list:
+            temp = datum.split("\t") #separating the word from its label
+            feature_strings.append(temp[0])
+            label_strings.append(temp[1])
+        del input_list #deleting the initial list to be economic
+        
+        vector_list=[] #here we will store our feature vectors
+        
+        for feature in feature_strings: #selecting a feature
+            feature = feature[0:-1].split(" ") #getting rid of trailing space and splitting on space
+            temp_list = [] #here we will compile the feature vector
+            for char in feature: #iterating over characters of the word
+                if char in vectors.keys(): #making sure we are not running into unknown chars
+                    vector = vectors[char] #getting the vector associated with the character
+                    temp_list.append(vector)
+            
+            if len(temp_list)==0:
+                print("cannot find:",feature)
+                
+            base = temp_list[0] #selecting the first character-vector
+
+            for i in range(1,len(temp_list)): 
+                base=np.add(base,temp_list[i]) #adding all other character vectors item-wise
+            array=base/len(temp_list) #dividing by the total amount of characters
+        
+            vector_list.append(array) #putting the new and averaged array into our list
+                
+                
+                
+        
+        x_train = vector_list #transforming the feature strings into glove vectors based on our pretrained embedding
+
+        y_train = self.label_encoder.fit_transform(label_strings) #fitting and transforming the labels to integers
+        
+        if len(x_train)!=len(y_train): #making sure we have as many feature vectors as we have labels
+            print("features:",len(x_train),"\n","labels:",len(y_train))
+        
+        self.model.fit(x_train, y_train)
+        
+        print("The classifier has finished training")
+        
+    def train_count(self, train_data_path):
+        """
+        This trains the classifier on vectors created by the CountVectorizer, as opposed to pretrained embeddings
+        """
+
+        f = open(train_data_path,'r',encoding="utf8") #reading in the input data
+        input_string = f.read()
+        f.close()
+        
+        input_list=input_string.split("\n") #storing each datum as a string in a list
+        input_list=input_list[0:-2] #getting rid of the last empty newline
+        feature_strings= []
+        label_strings= []
+        
+        for datum in input_list:
+            temp = datum.split("\t") #separating the word from its label
+            feature_strings.append(temp[0])
+            label_strings.append(temp[1])
+        del input_list #deleting the initial list
+        
+
+        
+        x_train = self.vectorizer.fit_transform(feature_strings) #transforming the feature strings into vectors with the count vectorizer
+
+        y_train = self.label_encoder.fit_transform(label_strings) #fitting and transforming the labels to integers
+        
+        self.model.fit(x_train, y_train) #training the model
+        
+        print("The classifier has finished training (CountVectorizer)")
+        
+        
+    
+    def predict_labels(self, vectors, test_data_path):
+        """
+        Takes a testfile where tokens and labels are seperated with \t
+        returns the sequence of gold-lables and the sequence of predicted labels in INTEGER FORM
+        """
+        f = open(test_data_path,'r',encoding="utf8") #reading in the input data
+        input_string = f.read()
+        f.close()
+        
+        input_list=input_string.split("\n") #storing each datum as a string in a list
+        input_list=input_list[0:-2] #getting rid of the last empty newline
+        feature_strings= []
+        label_strings= []
+        
+        for datum in input_list:
+            temp = datum.split("\t") #separating the word from its label
+            feature_strings.append(temp[0])
+            label_strings.append(temp[1])
+        del input_list #deleting the initial list to be economic
+        
+        vector_list=[] #here we will store our feature vectors
+        
+        for feature in feature_strings: #selecting a feature
+            feature = feature[0:-1].split(" ") #getting rid of trailing space and splitting on space
+            temp_list = [] #here we will compile the feature vector
+            for char in feature: #iterating over characters of the word
+                if char in vectors.keys(): #making sure we are not running into unknown chars
+                    vector = vectors[char] #getting the vector associated with the character
+                    temp_list.append(vector)
+            
+            if len(temp_list)==0:
+                print("cannot find:",feature)
+                
+            base = temp_list[0] #selecting the first character-vector
+
+            for i in range(1,len(temp_list)): 
+                base=np.add(base,temp_list[i]) #adding all other character vectors item-wise
+            array=base/len(temp_list) #dividing by the total amount of characters
+        
+            vector_list.append(array) #putting the new and averaged array into our list
+        
+        x_test=vector_list
+
+        predictions = self.model.predict(x_test) #makes the predictions
+        
+        gold_labels = self.label_encoder.transform(label_strings)
+        
+        return predictions,gold_labels
+    
+    def predict_labels_count(self, test_data_path):
+        """
+        Takes a testfile where tokens and labels are seperated with \t
+        returns the sequence of gold-lables and the sequence of predicted labels in INTEGER FORM
+        This is the CountVectorizer based implementation
+        """
+        f = open(test_data_path,'r') #reading in the test data
+        input_string = f.read()
+        f.close()
+        
+        input_list=input_string.split("\n") #storing each datum as a string in a list
+        input_list=input_list[0:-2] #getting rid of the last empty newline
+        feature_strings= []
+        label_strings= []
+        
+        for datum in input_list:
+            temp = datum.split("\t") #separating the word from its label
+            feature_strings.append(temp[0])
+            label_strings.append(temp[1])
+        del input_list #deleting the initial list to be economic
+        
+        x_test = self.vectorizer.transform(feature_strings) #transforming the feature strings into vectors with the count vectorizer
+
+
+        predictions = self.model.predict(x_test) #makes the predictions
+        
+        gold_labels = self.label_encoder.transform(label_strings)
+        
+        return predictions,gold_labels
+    
+```
