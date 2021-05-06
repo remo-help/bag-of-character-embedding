@@ -280,7 +280,7 @@ Now we can finally compare the two:
 ```python
 print("Here are the results of the GloVe embeddings:\n","F1_score: ",glove_f1,"\n", "accuracy: ", glove_accuracy,"\n")
 print("Here are the results of the CountVectorizer embeddings:\n","F1_score: ",count_f1,"\n", "accuracy: ", count_accuracy)
-######
+```
 Here are the results of the GloVe embeddings:
  F1_score:  0.6131187454146257 
  accuracy:  0.5547794117647059 
@@ -288,7 +288,7 @@ Here are the results of the GloVe embeddings:
 Here are the results of the CountVectorizer embeddings:
  F1_score:  0.7720255415700806 
  accuracy:  0.7511859582542695
-```
+
 
 ## Results
 As you can see, the **CountVectorizer implementation performs much better**. However, even the CountVectorizer implementation does not yield amazing results. This is likely due to the fact that this is quite the difficult task. German, French, and English share many cognates (words that have similar roots). Also, the data contains a variety of names, which are a huge problem. For example "Irene" can be a name in French, English, and German. Considering these problems, both performances are still pretty good.
